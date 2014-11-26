@@ -1,0 +1,38 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<style>
+h3 {margin:5px;}
+#content  {width:800px;margin:0 auto; text-align: center}
+#vid1-wrap {float: left;}
+#vid2-wrap {float: right;}
+</style>
+</head>
+<body>
+	<div id="content"> 
+		<h1>Demo page for videotimeline.js</h1>
+		<div id="vid1-wrap">
+			<h3>Camera 1</h3>
+			<video id="vid1" width="320">
+	  			<source src="Day2-synch-Cam01.ogv" type="video/ogg">
+				Your browser does not support the video tag.
+			</video>
+		</div>
+		<div id="vid2-wrap">
+			<h3>Camera 2</h3>
+			<video id="vid2" width="320">
+	  			<source src="Day2-synch-Cam02.ogv" type="video/ogg">
+				Your browser does not support the video tag.
+			</video>
+		</div>
+	</div>
+<script type="text/javascript" src="videotimeline.js"></script>
+<script>
+var timeline = new Timeline();
+timeline.addVideo("camera1", "vid1");
+timeline.addVideo("camera2", "vid2");
+
+
+</script>
+</body>
