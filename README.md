@@ -13,8 +13,8 @@ Simply add as many <video> elements to your page as you want. Then initialise ti
 
 ```
 var timeline = new Timeline();
-timeline.addVideo("camera1", "vid1");
-timeline.addVideo("camera2", "vid2");
+timeline.addVideoFromDOM("camera1", "vid1");
+timeline.addVideoFromDOM("camera2", "vid2");
 ```
 
-Timeline will appear automatically in bottom of page. Click on track name 
+Timeline will appear automatically in bottom of page. Click on track name to switch to that video

@@ -16,7 +16,9 @@ var Timeline = function() {
 	}, 1000/30);
 }   
 
-Timeline.prototype.addVideo= function(name, id) {
+Timeline.prototype.addVideoFromDOM= function(name, id) {
+  if (!document.getElementById(id)) {
+    console.log("DOM does not contain video with this ID"); return;}
   var videoTrack = {
     type: "video",
     startTime: 0, //TEMP!
@@ -26,6 +28,31 @@ Timeline.prototype.addVideo= function(name, id) {
     name: name,
   }
   document.getElementById(id).addEventListener('loadedmetadata', function() {
+    videoTrack.endTime = document.getElementById(id).duration
+  });
+  this.tracks.push(videoTrack)
+}
+
+Timeline.prototype.addVideoFromURL = function(name, url, addToPage) {
+  var vidElement = document.createElement("video");
+  vidElement.id = name;
+  var source = document.createElement('source');
+      source.src = url;
+      source.type = 'video/ogg';
+      vidElement.appendChild(source);
+
+  if (addToPage)
+    document.body.appendChild(vidElement);
+
+  var videoTrack = {
+    type: "video",
+    startTime: 0, //TEMP!
+    endTime:10, //TEMP!
+    id: name,
+    index: this.tracks.length,
+    name: name,
+  }
+  document.getElementById(name).addEventListener('loadedmetadata', function() {
     videoTrack.endTime = document.getElementById(id).duration
   });
   this.tracks.push(videoTrack)
