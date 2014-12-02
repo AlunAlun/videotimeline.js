@@ -5,33 +5,28 @@
 <style>
 h3 {margin:5px;}
 #content  {width:800px;margin:0 auto; text-align: center}
-#vid1-wrap {float: left;}
-#vid2-wrap {float: right;}
 </style>
 </head>
 <body>
-	<div id="content"> 
+	<div id="content">
 		<h1>Demo page for videotimeline.js</h1>
-		<div id="vid1-wrap">
-			<h3>Camera 1</h3>
-			<video id="vid1" width="320">
-	  			<source src="Day2-synch-Cam01.ogv" type="video/ogg">
-				Your browser does not support the video tag.
-			</video>
-		</div>
-		<div id="vid2-wrap">
-			<h3>Camera 2</h3>
-			<video id="vid2" width="320">
-	  			<source src="Day2-synch-Cam02.ogv" type="video/ogg">
-				Your browser does not support the video tag.
-			</video>
-		</div>
+
+		<h3>One player for several cameras</h3>
+		<video id="player" width="480"></video>
+		<p>Click on the camera on the left of the timeline below. This demos uses data publically available from the EU FP7 project IMPART: <a href="http://cvssp.org/impart/" target="_blank">http://cvssp.org/impart/
+
 	</div>
+
 <script type="text/javascript" src="videotimeline.js"></script>
 <script>
 var timeline = new Timeline();
-timeline.addVideoFromDOM("camera1", "vid1");
-timeline.addVideoFromDOM("camera2", "vid2");
+timeline.addVideoLink("camera1", "http://alunevans.info/work/impart/setviewer/CCSR120Vid/Day2-synch-Cam01.ogv", "player");
+timeline.addVideoLink("camera2", "http://alunevans.info/work/impart/setviewer/CCSR120Vid/Day2-synch-Cam02.ogv", "player");
+timeline.addVideoLink("camera3", "http://alunevans.info/work/impart/setviewer/CCSR120Vid/Day2-synch-Cam03.ogv", "player");
+timeline.addVideoLink("camera4", "http://alunevans.info/work/impart/setviewer/CCSR120Vid/Day2-synch-Cam04.ogv", "player");
+timeline.addVideoLink("camera5", "http://alunevans.info/work/impart/setviewer/CCSR120Vid/Day2-synch-Cam05.ogv", "player");
+timeline.addVideoLink("camera6", "http://alunevans.info/work/impart/setviewer/CCSR120Vid/Day2-synch-Cam06.ogv", "player");
+timeline.addVideoLink("camera7", "http://alunevans.info/work/impart/setviewer/CCSR120Vid/Day2-synch-Cam07.ogv", "player");
 
 
 

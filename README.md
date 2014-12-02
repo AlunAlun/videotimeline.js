@@ -5,18 +5,32 @@ A canvas based timeline for controlling multiple HTML5 video objects. It is a fo
 
 Global play/pause/stop controls and scrubbing along the timeline for all connected videos.
 
-Designed to track playback of multicamera setups (production, security, sports etc)
+Designed to track playback of multicamera setups (production, security, sports etc).
 
 ## Usage
 
-Simply add as many <video> elements to your page as you want. Then initialise timeline and add videos to it as follows:
+### Videos already in the DOM
+
+Simply add as many <video> elements to your page as you want.  Then initialise timeline and add videos to it as follows:
 
 ```
 var timeline = new Timeline();
 timeline.addVideoFromDOM("camera1", "vid1");
 timeline.addVideoFromDOM("camera2", "vid2");
+timeline.addVideoLink("camera3", "url-to-camera.ogv", true);
 ```
 
-Timeline will appear automatically in bottom of page. Click on track name to switch to that video.
+The timeline will appear automatically in bottom of page. Click on track name to switch to that video, and drag and drop the slider to skip along
 
-See a demo [here](http://alunevans.info/apps/videotimeline/).
+See a simple demo [here](http://alunevans.info/apps/videotimeline/)
+
+### Videos not in DOM, loaded from external URL
+
+videotimeline.js allows you to switch between several video files and see them in the same player area
+
+```
+var timeline = new Timeline();
+timeline.addVideoLink("camera1", "url-to-camera.ogv", "id-of-video-element");
+```
+
+A demo of this is here [here](http://alunevans.info/apps/videotimeline-oneviewer/).
