@@ -17,4 +17,6 @@ timeline.addVideoFromDOM("camera1", "vid1");
 timeline.addVideoFromDOM("camera2", "vid2");
 ```
 
-Timeline will appear automatically in bottom of page. Click on track name to switch to that video
+Timeline will appear automatically in bottom of page. Click on track name to switch to that video.
+
+See a demo [here](http://alunevans.info/apps/videotimeline/).
