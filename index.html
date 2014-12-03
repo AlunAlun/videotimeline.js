@@ -5,6 +5,7 @@
 <style>
 h3 {margin:5px;}
 #content  {width:800px;margin:0 auto; text-align: center}
+#player {margin:0 auto;}
 </style>
 </head>
 <body>
@@ -12,7 +13,9 @@ h3 {margin:5px;}
 		<h1>Demo page for videotimeline.js</h1>
 
 		<h3>One player for several cameras</h3>
-		<video id="player" width="480"></video>
+		<div id="player">
+		
+		</div>
 		<p>Click on the camera on the left of the timeline below. This demos uses data publically available from the EU FP7 project IMPART: <a href="http://cvssp.org/impart/" target="_blank">http://cvssp.org/impart/
 
 	</div>
@@ -20,13 +23,14 @@ h3 {margin:5px;}
 <script type="text/javascript" src="videotimeline.js"></script>
 <script>
 var timeline = new Timeline();
-timeline.addVideoLink("camera1", "http://alunevans.info/work/impart/setviewer/CCSR120Vid/Day2-synch-Cam01.ogv", "player");
-timeline.addVideoLink("camera2", "http://alunevans.info/work/impart/setviewer/CCSR120Vid/Day2-synch-Cam02.ogv", "player");
-timeline.addVideoLink("camera3", "http://alunevans.info/work/impart/setviewer/CCSR120Vid/Day2-synch-Cam03.ogv", "player");
-timeline.addVideoLink("camera4", "http://alunevans.info/work/impart/setviewer/CCSR120Vid/Day2-synch-Cam04.ogv", "player");
-timeline.addVideoLink("camera5", "http://alunevans.info/work/impart/setviewer/CCSR120Vid/Day2-synch-Cam05.ogv", "player");
-timeline.addVideoLink("camera6", "http://alunevans.info/work/impart/setviewer/CCSR120Vid/Day2-synch-Cam06.ogv", "player");
-timeline.addVideoLink("camera7", "http://alunevans.info/work/impart/setviewer/CCSR120Vid/Day2-synch-Cam07.ogv", "player");
+timeline.playerElementID = "player";
+timeline.addVideoLink("camera1", "http://alunevans.info/work/impart/setviewer/CCSR120Vid/Day2-synch-Cam01.ogv");
+timeline.addVideoLink("camera2", "http://alunevans.info/work/impart/setviewer/CCSR120Vid/Day2-synch-Cam02.ogv");
+timeline.addVideoLink("camera3", "http://alunevans.info/work/impart/setviewer/CCSR120Vid/Day2-synch-Cam03.ogv");
+timeline.addVideoLink("camera4", "http://alunevans.info/work/impart/setviewer/CCSR120Vid/Day2-synch-Cam04.ogv");
+timeline.addVideoLink("camera5", "http://alunevans.info/work/impart/setviewer/CCSR120Vid/Day2-synch-Cam05.ogv");
+timeline.addVideoLink("camera6", "http://alunevans.info/work/impart/setviewer/CCSR120Vid/Day2-synch-Cam06.ogv");
+timeline.addVideoLink("camera7", "http://alunevans.info/work/impart/setviewer/CCSR120Vid/Day2-synch-Cam07.ogv");
 
 
 

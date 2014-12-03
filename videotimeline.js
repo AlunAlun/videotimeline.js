@@ -83,8 +83,13 @@ Timeline.prototype.play = function() {
   this.playing = true;
   this.shouldPlay = false;
   this.synchVideos();
-  document.getElementById(this.tracks[this.currentVideo].id).play();
-  this.time = document.getElementById(this.tracks[this.currentVideo].id).currentTime ;
+  //play video if it already loaded. If not it will play automatically after being loaded in
+  //createVideoElement
+  var el;
+  if (el = document.getElementById(this.tracks[this.currentVideo].id)){
+    el.play();
+    this.time = el.currentTime ;
+  }
 }   
 
 Timeline.prototype.pause = function() {
@@ -109,13 +114,19 @@ Timeline.prototype.changeTrack = function(newTrack) {
     this.pause(); 
     needRestart = true;
   }
-
-  //check tracks aren't sharing shame player element, if so change source
-  if (this.tracks[this.currentVideo].element == this.tracks[newTrack.index].element )
-    this.tracks[this.currentVideo].element.src = this.tracks[newTrack.index].url;
-
+  //hide old video
+  this.tracks[this.currentVideo].element.style.display = 'none';
   //change video
   this.currentVideo = newTrack.index;
+
+  //if we have already loaded video, show it 
+  //(if not, it will load automatically on interval tick in createVideoElement)
+  if (this.tracks[this.currentVideo].element)
+    this.tracks[this.currentVideo].element.style.display = 'block';
+
+  //adjust width of player if required
+  if (this.playerElement && this.tracks[this.currentVideo].element)
+    this.playerElement.style.width = this.tracks[this.currentVideo].element.offsetWidth.toString() + 'px';
 
   //restart if required
   if (needRestart)
@@ -133,30 +144,43 @@ Timeline.prototype.changeTrack = function(newTrack) {
 
 Timeline.prototype.createVideoElement = function(videoTrack){
   
-  //check if player exists in DOM first
-  var vidElement;
-  if (vidElement = document.getElementById(videoTrack.id))  { // player exists, change source
-    vidElement.src = videoTrack.url;
-  } else { //player doesn't exist, make it and add it
-    vidElement = document.createElement("video");
-    vidElement.id = videoTrack.id;
-    vidElement.src = videoTrack.url;
-    document.body.appendChild(vidElement);
-  }
-
+  //create video element
+  vidElement = document.createElement("video");
+  vidElement.id = videoTrack.id;
+  vidElement.src = videoTrack.url;
+  //link it to the new track
   videoTrack.element = vidElement;
 
+  //check if there is a designated player element on page
+  if (!this.playerElementID) { //if not, just append video to bottom
+    document.body.appendChild(vidElement);
+  } else { 
+    //get handle to player element
+    if (!this.playerElement)
+      this.playerElement = document.getElementById(this.playerElementID);
+    //add to DOM
+    this.playerElement.appendChild(vidElement);
+  }
+  
+  //synch time for new video
+  vidElement.currentTime = videoTrack.time = this.time;
+
+  //adjust timeline with new metadata
   vidElement.addEventListener('loadedmetadata', function() {
     videoTrack.endTime = document.getElementById(videoTrack.id).duration
   });
 }
 
 Timeline.prototype.synchVideos = function() {
+    //synch time for all tracks
     for (vidID in this.tracks) {
       this.tracks[vidID].time = this.time;
     }
-    if (this.tracks[this.currentVideo])
-      document.getElementById(this.tracks[this.currentVideo].id).currentTime = this.time;
+    //synch time for playing video. This won't work for new videos, so synch
+    //will also happen when they are made in createVideoElement
+    var el;
+    if (el = document.getElementById(this.tracks[this.currentVideo].id))
+      el.currentTime = this.time;
   
 }
 

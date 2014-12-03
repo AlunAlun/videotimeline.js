@@ -30,7 +30,9 @@ videotimeline.js allows you to switch between several video files and see them i
 
 ```
 var timeline = new Timeline();
-timeline.addVideoLink("camera1", "url-to-camera.ogv", "id-of-video-element");
+timeline.playerElementID = "id-of-div-to-contain-videos";
+timeline.addVideoLink("camera1", "url-to-camera.ogv");
+timeline.addVideoLink("camera2", "url-to-camera2.ogv");
 ```
 
 A demo of this is here [here](http://alunevans.info/apps/videotimeline-oneviewer/).
